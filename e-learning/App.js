@@ -3,6 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import LoginScreen from './App/Screen/LoginScreen';
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo';
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigations from './App/Navigations/TabNavigations';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -11,10 +13,12 @@ export default function App() {
     outfit_bold: require('./assets/fonts/Outfit-Bold.ttf'),
   });
   return (
-    <ClerkProvider publishableKey="mafufu">
+    <ClerkProvider publishableKey="mafufo">
       <View style={styles.container}>
         <SignedIn>
-          <Text>You are Signed in</Text>
+          <NavigationContainer>
+            <TabNavigations />
+          </NavigationContainer>
         </SignedIn>
         <SignedOut>
           <LoginScreen />
@@ -28,5 +32,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    marginTop: 20,
   },
 });
